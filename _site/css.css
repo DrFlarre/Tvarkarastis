@@ -79,19 +79,3 @@ h2 {
 .opacity-off {
   opacity:1.0;
 }
-
-.btn-left {
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translate(0%,-50%);
-  width:20%;
-}
-
-.btn-right {
-  position: absolute;
-  top: 50%;
-  right: 0%;
-  transform: translate(0%,-50%);
-  width:20%;
-}

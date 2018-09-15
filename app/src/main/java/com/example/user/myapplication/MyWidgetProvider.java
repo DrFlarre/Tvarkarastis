@@ -1,5 +1,6 @@
 package com.example.user.myapplication;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -7,9 +8,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 public class MyWidgetProvider extends AppWidgetProvider {
     public static final String EXTRA_ITEM = "com.example.android.stackwidget.EXTRA_ITEM";
+    public static final String TOAST_ACTION = "com.example.android.stackwidget.TOAST_ACTION";
 
     @Override
     public void onDeleted(Context context, int[] appWidgetIds) {
@@ -28,6 +31,16 @@ public class MyWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        AppWidgetManager mgr = AppWidgetManager.getInstance(context);
+        if (intent.getAction() != null && intent.getAction().equals(TOAST_ACTION)) {
+            Intent intent1 = new Intent(context, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent1, 0);
+            try {
+                pendingIntent.send();
+            } catch(Exception e) {
+                Log.e("myDebug", "problem sending activity start intent");
+            }
+        }
         super.onReceive(context, intent);
     }
 
@@ -49,6 +62,16 @@ public class MyWidgetProvider extends AppWidgetProvider {
             // The empty view is displayed when the collection has no items. It should be a sibling
             // of the collection view.
             rv.setEmptyView(R.id.stack_view, R.id.empty_view);
+
+            // Get the layout for the App Widget and attach an on-click listener
+            // to the button
+            Intent toastIntent = new Intent(context, MyWidgetProvider.class);
+            toastIntent.setAction(MyWidgetProvider.TOAST_ACTION);
+            intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
+            PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            rv.setPendingIntentTemplate(R.id.stack_view, toastPendingIntent);
+
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.stack_view);
             appWidgetManager.updateAppWidget(appWidgetIds[i], rv);
         }

@@ -56,8 +56,13 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         // position will always range from 0 to getCount() - 1.
 
         // We construct a remote views item based on our widget item xml file, and set the
-        // text based on the position.
-        RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
+        // text based on the position;
+        RemoteViews rv;
+        if(mPrefs.getBoolean("darkTheme", false)) {
+            rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item_dark);
+        } else {
+            rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);
+        }
         Pamoka pamoka = pamokos.get(position);
 
         String pavadinimas = pamoka.pavadinimas;
@@ -86,6 +91,10 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
         rv.setOnClickFillInIntent(R.id.pavadinimas, fillInIntent);
+        rv.setOnClickFillInIntent(R.id.pavadinimas2, fillInIntent);
+        rv.setOnClickFillInIntent(R.id.laikas, fillInIntent);
+        rv.setOnClickFillInIntent(R.id.mokytojas, fillInIntent);
+        rv.setOnClickFillInIntent(R.id.numeris, fillInIntent);
 
         // You can do heaving lifting in here, synchronously. For example, if you need to
         // process an image, fetch something from the network, etc., it is ok to do it here,

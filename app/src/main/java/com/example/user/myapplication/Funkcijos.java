@@ -291,6 +291,7 @@ public class Funkcijos {
                     public void onCompleted(Exception e, byte[] result) {
                         try {
                             String res = new String(result, "Windows-1257");
+                            Log.d("myDebug", res);
                             mPrefs.edit().putString(target, res).apply();
                             if(target.equals("nameString")) {
                                 Intent intent = new Intent("name_download_finished");

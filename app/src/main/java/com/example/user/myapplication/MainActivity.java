@@ -116,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String version = mPrefs.getString("web-version", "NULL");
+                if(version.indexOf('/') != -1)
+                    version = version.substring(version.indexOf('v'), version.indexOf('/'));
+                else
+                    Log.d("myDebug","problem with version codes, wait and reload or contact the developer");
                 Log.d("myDebug", version + " / " + BuildConfig.VERSION_NAME);
                 if(!version.equals(BuildConfig.VERSION_NAME) && mPrefs.getBoolean("versionUpdate", true)) {
                     displayUpdateDialog();

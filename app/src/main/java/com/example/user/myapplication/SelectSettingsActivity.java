@@ -152,6 +152,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
         setPanaikinimaiTextProperties();
         setNukirpimoTextProperties();
         changeSettingColor(mPrefs.getBoolean("autoUpdate", true), R.id.autoUpdateBusena);
+        changeSettingColor(mPrefs.getBoolean("versionUpdate", true), R.id.versionUpdateBusena);
     }
 
     /**Funkcija, atidaranti "Apie" meniu*/
@@ -372,6 +373,14 @@ public class SelectSettingsActivity extends AppCompatActivity {
     }
     /*-------------------------------------------------------------------*/
 
+    /*--------------------------- AutoUpdate ----------------------------*/
+    public void pakeistiVersionUpdateNustatymus(View view) {
+        keite_nustatymus = true;
+        boolean versionUpdate = !mPrefs.getBoolean("versionUpdate", true);
+        mPrefs.edit().putBoolean("versionUpdate", versionUpdate).apply();
+        changeSettingColor(versionUpdate, R.id.versionUpdateBusena);
+    }
+    /*-------------------------------------------------------------------*/
     /*--------------------------------------------------------------------------------------*/
 
 

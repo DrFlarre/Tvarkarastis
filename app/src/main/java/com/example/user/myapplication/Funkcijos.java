@@ -532,36 +532,4 @@ public class Funkcijos {
         alarmManager.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
     }
     /*----------------------------------------------------------------------------------------*/
-
-    static public void checkForUpdates(Context context, final SharedPreferences mPrefs) {
-        getString(context, "https://drflarre.github.io/tvarkarastis/version.html", mPrefs, "web-version");
-        BroadcastReceiver message = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if(!mPrefs.getString("web-version", "NULL").equals(BuildConfig.VERSION_NAME)) {
-                    final Dialog dialog = new Dialog(context);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.custom_one_button_dialog);
-
-                    final TextView dialog_text = dialog.findViewById(R.id.dialog_text),
-                            button = dialog.findViewById(R.id.dialog_button);
-
-                    String text = context.getString(R.string.nauja_versija);
-
-                    dialog_text.setText(text);
-                    button.setText(R.string.gerai);
-                    button.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            dialog.dismiss();
-                        }
-                    });
-
-                    dialog.show();
-                }
-            }
-        };
-        LocalBroadcastManager.getInstance(context).registerReceiver(message, new IntentFilter("version_check_finished"));
-
-    }
 }

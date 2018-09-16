@@ -2,13 +2,17 @@ package com.example.user.myapplication;
 
 import android.app.Dialog;
 import android.appwidget.AppWidgetManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -81,9 +85,45 @@ public class MainActivity extends AppCompatActivity {
             Funkcijos.nustatytiPamokuAtnaujinima(getApplicationContext(), mPrefs);
 
         mPrefs.edit().putBoolean("mainActivityDarkTheme", mPrefs.getBoolean("darkTheme", false)).apply();
-        Funkcijos.checkForUpdates(getApplicationContext(), mPrefs);
+        checkForUpdates();
     }
 
+    void displayUpdateDialog() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_one_button_dialog);
+
+        final TextView dialog_text = dialog.findViewById(R.id.dialog_text),
+                button = dialog.findViewById(R.id.dialog_button);
+
+        String text = getString(R.string.nauja_versija);
+
+        dialog_text.setText(text);
+        button.setText(R.string.gerai);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    void checkForUpdates() {
+        Funkcijos.getString(getApplicationContext(), "https://drflarre.github.io/tvarkarastis/version.html", mPrefs, "web-version");
+        BroadcastReceiver message = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String version = mPrefs.getString("web-version", "NULL");
+                Log.d("myDebug", version + " / " + BuildConfig.VERSION_NAME);
+                if(!version.equals(BuildConfig.VERSION_NAME) && mPrefs.getBoolean("versionUpdate", true)) {
+                    displayUpdateDialog();
+                }
+            }
+        };
+        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(message, new IntentFilter("version_check_finished"));
+    }
 
 
 

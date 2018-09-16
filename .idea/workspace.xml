@@ -177,27 +177,27 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="123" column="76" lean-forward="false" selection-start-line="123" selection-start-column="76" selection-end-line="123" selection-end-column="76" />
+            <state relative-caret-position="205">
+              <caret line="121" column="101" lean-forward="false" selection-start-line="121" selection-start-column="101" selection-end-line="121" selection-end-column="101" />
               <folding>
                 <element signature="e#3529#3562#0" expanded="true" />
                 <element signature="e#3623#3637#0" expanded="true" />
                 <element signature="e#3674#3827#0" expanded="true" />
                 <element signature="e#3826#3827#0" expanded="true" />
-                <element signature="e#4059#4789#0" expanded="true" />
-                <element signature="e#4788#4789#0" expanded="true" />
-                <element signature="e#7661#7688#0" expanded="true" />
-                <element signature="e#8643#8683#0" expanded="true" />
-                <element signature="e#8735#8775#0" expanded="true" />
-                <element signature="e#8845#8885#0" expanded="true" />
-                <element signature="e#8920#8955#0" expanded="true" />
-                <element signature="e#9002#9245#0" expanded="true" />
-                <element signature="e#9244#9245#0" expanded="true" />
-                <element signature="e#9291#9478#0" expanded="true" />
-                <element signature="e#9477#9478#0" expanded="true" />
-                <element signature="e#9523#9676#0" expanded="true" />
-                <element signature="e#9675#9676#0" expanded="true" />
-                <element signature="e#15094#15121#0" expanded="true" />
+                <element signature="e#4059#4711#0" expanded="true" />
+                <element signature="e#4710#4711#0" expanded="true" />
+                <element signature="e#7583#7610#0" expanded="true" />
+                <element signature="e#8565#8605#0" expanded="true" />
+                <element signature="e#8657#8697#0" expanded="true" />
+                <element signature="e#8767#8807#0" expanded="true" />
+                <element signature="e#8842#8877#0" expanded="true" />
+                <element signature="e#8924#9167#0" expanded="true" />
+                <element signature="e#9166#9167#0" expanded="true" />
+                <element signature="e#9213#9400#0" expanded="true" />
+                <element signature="e#9399#9400#0" expanded="true" />
+                <element signature="e#9445#9598#0" expanded="true" />
+                <element signature="e#9597#9598#0" expanded="true" />
+                <element signature="e#15016#15043#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -206,8 +206,8 @@
       <file leaf-file-name="Funkcijos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/Funkcijos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="293" column="50" lean-forward="false" selection-start-line="293" selection-start-column="50" selection-end-line="293" selection-end-column="50" />
+            <state relative-caret-position="173">
+              <caret line="295" column="85" lean-forward="false" selection-start-line="295" selection-start-column="85" selection-end-line="295" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -2285,8 +2285,8 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_select_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/SelectSettingsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/Funkcijos.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/Funkcijos.java" />
       </list>
     </option>
   </component>
@@ -2586,7 +2586,14 @@
       <option name="project" value="LOCAL" />
       <updated>1537090142799</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="improved version update system">
+      <created>1537091229584</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1537091229584</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2604,7 +2611,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969605" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -2638,7 +2645,8 @@
     <MESSAGE value="Pridėtas programos atidarymas, paspaudus widget&#10;Pakeista widget preview nuotrauka bei minimalus dydis" />
     <MESSAGE value="Pridėtas versijos tikrinimas&#10;pakeista verija į 1,3 (testavimui)" />
     <MESSAGE value="pabaigtas versijos tikrinimo kūrimas&#10;pakeista versija atgal į v1.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="pabaigtas versijos tikrinimo kūrimas&#10;pakeista versija atgal į v1.2" />
+    <MESSAGE value="improved version update system" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved version update system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3089,35 +3097,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/Funkcijos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="293" column="50" lean-forward="false" selection-start-line="293" selection-start-column="50" selection-end-line="293" selection-end-column="50" />
+        <state relative-caret-position="173">
+          <caret line="295" column="85" lean-forward="false" selection-start-line="295" selection-start-column="85" selection-end-line="295" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="123" column="76" lean-forward="false" selection-start-line="123" selection-start-column="76" selection-end-line="123" selection-end-column="76" />
+        <state relative-caret-position="205">
+          <caret line="121" column="101" lean-forward="false" selection-start-line="121" selection-start-column="101" selection-end-line="121" selection-end-column="101" />
           <folding>
             <element signature="e#3529#3562#0" expanded="true" />
             <element signature="e#3623#3637#0" expanded="true" />
             <element signature="e#3674#3827#0" expanded="true" />
             <element signature="e#3826#3827#0" expanded="true" />
-            <element signature="e#4059#4789#0" expanded="true" />
-            <element signature="e#4788#4789#0" expanded="true" />
-            <element signature="e#7661#7688#0" expanded="true" />
-            <element signature="e#8643#8683#0" expanded="true" />
-            <element signature="e#8735#8775#0" expanded="true" />
-            <element signature="e#8845#8885#0" expanded="true" />
-            <element signature="e#8920#8955#0" expanded="true" />
-            <element signature="e#9002#9245#0" expanded="true" />
-            <element signature="e#9244#9245#0" expanded="true" />
-            <element signature="e#9291#9478#0" expanded="true" />
-            <element signature="e#9477#9478#0" expanded="true" />
-            <element signature="e#9523#9676#0" expanded="true" />
-            <element signature="e#9675#9676#0" expanded="true" />
-            <element signature="e#15094#15121#0" expanded="true" />
+            <element signature="e#4059#4711#0" expanded="true" />
+            <element signature="e#4710#4711#0" expanded="true" />
+            <element signature="e#7583#7610#0" expanded="true" />
+            <element signature="e#8565#8605#0" expanded="true" />
+            <element signature="e#8657#8697#0" expanded="true" />
+            <element signature="e#8767#8807#0" expanded="true" />
+            <element signature="e#8842#8877#0" expanded="true" />
+            <element signature="e#8924#9167#0" expanded="true" />
+            <element signature="e#9166#9167#0" expanded="true" />
+            <element signature="e#9213#9400#0" expanded="true" />
+            <element signature="e#9399#9400#0" expanded="true" />
+            <element signature="e#9445#9598#0" expanded="true" />
+            <element signature="e#9597#9598#0" expanded="true" />
+            <element signature="e#15016#15043#0" expanded="true" />
           </folding>
         </state>
       </provider>

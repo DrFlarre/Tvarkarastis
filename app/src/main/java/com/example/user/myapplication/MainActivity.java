@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
             Funkcijos.nustatytiPamokuAtnaujinima(getApplicationContext(), mPrefs);
 
         mPrefs.edit().putBoolean("mainActivityDarkTheme", mPrefs.getBoolean("darkTheme", false)).apply();
+        Funkcijos.checkForUpdates(getApplicationContext(), mPrefs);
     }
 
 

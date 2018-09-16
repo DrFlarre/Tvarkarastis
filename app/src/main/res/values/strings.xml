@@ -123,4 +123,7 @@
     <string name="pasikeis_grizus">Pasikeis grįžus į pradinį ekraną</string>
     <string name="pamoku_sarasas_tuscias">Pamokų sąrašas tuščias</string>
 
+    <string name="nauja_versija">Yra nauja programos versija, ją galite atisiųsti iš drflarre.github.io/tvarkarastis</string>
+    <string name="gerai">GERAI</string>
+
 </resources>

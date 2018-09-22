@@ -17,9 +17,11 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private List<Pamoka> pamokos = new ArrayList<>();
     private Context mContext;
     private SharedPreferences mPrefs;
+    private int colorMode;
 
-    public ListRemoteViewsFactory(Context context) {
+    public ListRemoteViewsFactory(Context context, int cMode) {
         mContext = context;
+        colorMode = cMode;
     }
 
     public void onCreate() {
@@ -58,7 +60,7 @@ class ListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         // We construct a remote views item based on our widget item xml file, and set the
         // text based on the position;
         RemoteViews rv;
-        if(mPrefs.getBoolean("darkTheme", false)) {
+        if(colorMode == 1) {
             rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item_dark);
         } else {
             rv = new RemoteViews(mContext.getPackageName(), R.layout.widget_item);

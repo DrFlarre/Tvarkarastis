@@ -151,6 +151,12 @@ public class Funkcijos {
         int[] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context.getApplicationContext(), MyWidgetProvider.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         context.sendBroadcast(intent);
+
+        intent = new Intent(context, MyWidgetProviderLight.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context.getApplicationContext(), MyWidgetProviderLight.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
+        context.sendBroadcast(intent);
     }
 
     /**Funkcija gauta tempStr sakini irasyti i atitinkama kintamaji tvarkarascio apraše*/

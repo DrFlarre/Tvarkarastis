@@ -420,7 +420,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
 
             @Override
             public void onItemLongClick(View view, int position) {
-                if(pazymetiMokiniai.size() > position) {
+                if(pazymetiMokiniai.size() > position && position >= 0) {
                     pazymetiMokiniai.remove(position);
                     pazAdapter.notifyDataSetChanged();
                 }

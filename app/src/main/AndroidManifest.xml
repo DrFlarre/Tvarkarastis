@@ -34,7 +34,7 @@
 
         <receiver
             android:icon="@mipmap/ic_launcher"
-            android:label="Vienos dienos tvarkaraštis"
+            android:label="Tamsus tvarkaraštis"
             android:name=".MyWidgetProvider" >
             <intent-filter >
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -42,6 +42,18 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_info" />
+        </receiver>
+
+        <receiver
+            android:icon="@mipmap/ic_launcher"
+            android:label="Šviesus tvarkaraštis"
+            android:name=".MyWidgetProviderLight" >
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info_light" />
         </receiver>
 
         <service

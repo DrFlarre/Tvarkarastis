@@ -86,6 +86,14 @@ public class MainActivity extends AppCompatActivity {
 
         mPrefs.edit().putBoolean("mainActivityDarkTheme", mPrefs.getBoolean("darkTheme", false)).apply();
         checkForUpdates();
+
+        BroadcastReceiver message = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                paruostiSarasa();
+            }
+        };
+        LocalBroadcastManager.getInstance(this).registerReceiver(message, new IntentFilter("lesson_download_finished"));
     }
 
     void displayUpdateDialog() {

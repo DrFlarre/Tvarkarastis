@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="2dp"
-    android:background="#50333333">
+    android:background="#50eeeeee">
     <ListView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/stack_view"
         android:layout_width="match_parent"
@@ -13,13 +13,13 @@
         android:gravity="center"
         android:loopViews="true"
         android:divider="@drawable/list_divider_dark"
-        android:dividerHeight="2dip"/>
+        android:dividerHeight="1dip"/>
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/empty_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:textColor="@color/blackText1"
+        android:textColor="@color/blackText"
         android:textStyle="bold"
         android:text="@string/pamoku_sarasas_tuscias"
         android:textSize="20sp" />

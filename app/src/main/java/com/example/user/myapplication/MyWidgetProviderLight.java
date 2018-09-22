@@ -8,9 +8,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
-public class MyWidgetProvider extends AppWidgetProvider {
+public class MyWidgetProviderLight extends AppWidgetProvider {
     public static final String EXTRA_ITEM = "com.example.android.stackwidget.EXTRA_ITEM";
     public static final String TOAST_ACTION = "com.example.android.stackwidget.TOAST_ACTION";
 
@@ -52,8 +51,8 @@ public class MyWidgetProvider extends AppWidgetProvider {
             // Here we setup the intent which points to the StackViewService which will
             // provide the views for this collection.
             Intent intent = new Intent(context, WidgetService.class);
+            intent.putExtra("colorMode", 0);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
-            intent.putExtra("colorMode", 1);
             // When intents are compared, the extras are ignored, so we need to embed the extras
             // into the data so that the extras will not be ignored.
             intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
@@ -66,8 +65,8 @@ public class MyWidgetProvider extends AppWidgetProvider {
 
             // Get the layout for the App Widget and attach an on-click listener
             // to the button
-            Intent toastIntent = new Intent(context, MyWidgetProvider.class);
-            toastIntent.setAction(MyWidgetProvider.TOAST_ACTION);
+            Intent toastIntent = new Intent(context, MyWidgetProviderLight.class);
+            toastIntent.setAction(MyWidgetProviderLight.TOAST_ACTION);
             intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));
             PendingIntent toastPendingIntent = PendingIntent.getBroadcast(context, 0, toastIntent,
                     PendingIntent.FLAG_UPDATE_CURRENT);

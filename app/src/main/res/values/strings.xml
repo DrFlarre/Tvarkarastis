@@ -96,8 +96,6 @@
     <string name="panaikinimai_isjungti">Pranešimo negalima panaikinti nubraukiant į šoną</string>
 
     <!-- ATNAUJINIMO LAIKO NUSTATYMAI -->
-    <string name="laikas_title">Atnaujinimo laikas:&#160;</string>
-    <string name="laikas_info">Pranešimų apie pamokas atnaujinimo laikas</string>
     <string name="atsaukti">ATŠAUKTI</string>
     <string name="gerai">GERAI</string>
 
@@ -109,7 +107,7 @@
     <string name="gali_issikraipyti_warning">Gali išsikraipyti pamokų pavadinimai</string>
 
     <!-- AUTOMATINIO ATNAUJINIMO NUSTATYMAI -->
-    <string name="pamoku_atnaujinimas_title">Automatinis atnaujinimas:&#160;</string>
+    <string name="pamoku_atnaujinimas_title">Pamokų atnaujinimas:&#160;</string>
     <string name="autoUpdate_ijungtas">Savaitgaliais pamokos automatiškai atnaujinamos</string>
     <string name="autoUpdate_isjungtas">Pamokos atnaujinamos tik rankiniu būdu</string>
 

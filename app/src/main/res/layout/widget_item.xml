@@ -5,6 +5,7 @@
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
+    android:background="#50eeeeee"
     android:paddingBottom="@dimen/row_padding_vertical"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -40,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/pavadinimas"
         android:layout_below="@+id/mokytojas"
-        android:textColor="@color/grayText"
+        android:textColor="#333333"
         android:textSize="16sp" />
 
     <TextView

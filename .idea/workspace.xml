@@ -23,12 +23,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1dcd6fb-763b-40d3-a2a9-f91657ea3c46" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="e1dcd6fb-763b-40d3-a2a9-f91657ea3c46" name="Default" comment="added .gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/nustatymai.png" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -2540,7 +2536,21 @@
       <option name="project" value="LOCAL" />
       <updated>1537621656027</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="added .gitignore">
+      <created>1538159414598</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1538159414598</updated>
+    </task>
+    <task id="LOCAL-00010" summary="added .gitignore">
+      <created>1538159435323</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1538159435323</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2595,7 +2605,8 @@
     <MESSAGE value="improved version update system" />
     <MESSAGE value="built and removed .apk" />
     <MESSAGE value="added second widget&#10;transparent widget background&#10;update list on download finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="added second widget&#10;transparent widget background&#10;update list on download finish" />
+    <MESSAGE value="added .gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="added .gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,10 +16,21 @@ u {
   text-decoration: none;
 }
 
-.pavadinimas, .apie, .versija, .parsisiuntimai, .DUK {
+.pavadinimas, .apie, .versija, .parsisiuntimai, .DUK, .gitHub {
   margin-bottom: 20px;
   background: #D5D5E1;
   padding: 10px;
+}
+
+.gitHub {
+  padding: 0px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.gitHub > img {
+  margin-right: 20;
 }
 
 .pavadinimas {
@@ -42,13 +53,12 @@ h1, h2, h3 {
   margin-top: 10px;
 }
 
-h2 {
+h2, h4 {
   text-align:center;
   margin-bottom: 20px;
 }
 
 .versija {
-  background: #BFBDCB;
   text-align:center;
 }
 
@@ -57,7 +67,7 @@ h2 {
   font-family: courier;
 }
 
-.slide {
+.slides > img {
   display: none;
   width: 50%;
   margin: auto;
@@ -84,6 +94,19 @@ h2 {
   font-family:courier;
 }
 
-h4 {
-  text-align: center;
+#senesni {
+  display: none;
+}
+
+#toggleOlder {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.darkBackground {
+  background: #BFBDCB;
+}
+
+.disabled {
+  display: none;
 }

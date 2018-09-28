@@ -1,0 +1,4 @@
+*.apk
+build/
+gradle/
+app/build/

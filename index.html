@@ -202,11 +202,10 @@
 	}
 
 	$(document).ready (function () {
-			$.getJSON("https://api.github.com/repos/drflarre/tvarkarastis/releases/13039040").done(function (data) {
-					document.getElementById("DC-1").innerHTML = "Parsisiuntimų: " + data.assets[0].download_count;
-			})
-			$.getJSON("https://api.github.com/repos/drflarre/tvarkarastis/releases/12916154").done(function (data) {
-					document.getElementById("DC-2").innerHTML = "Parsisiuntimų: " + data.assets[0].download_count;
+			$.getJSON("https://api.github.com/repos/drflarre/tvarkarastis/releases").done(function (data) {
+				var x = document.getElementsByClassName("DC");
+				for(var i = 0; i < x.length; i++)
+					x[i].innerHTML = "Parsisiuntimų: " + data[i].assets[0].download_count;
 			})
 	});
 </script>

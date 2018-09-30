@@ -67,7 +67,7 @@ h2, h4 {
   font-family: courier;
 }
 
-.slides > img {
+.slide {
   display: none;
   width: 50%;
   margin: auto;

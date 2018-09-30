@@ -110,3 +110,9 @@ h2, h4 {
 .disabled {
   display: none;
 }
+
+.DC {
+  text-align: right;
+  margin-top: 5px;
+  margin-bottom: 0px;
+}

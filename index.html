@@ -12,12 +12,12 @@
 </div>
 <div class="slideshow">
 	<div id="slides" onclick="plusDivs(1)">
-		<img src="./site/1.png" />
-		<img src="./site/2.png" />
-		<img src="./site/3.png" />
-		<img src="./site/4.png" />
-		<img src="./site/5.png" />
-		<img src="./site/6.png" />
+		<img class="slide" src="./site/1.png" />
+		<img class="slide" src="./site/2.png" />
+		<img class="slide" src="./site/3.png" />
+		<img class="slide" src="./site/4.png" />
+		<img class="slide" src="./site/5.png" />
+		<img class="slide" src="./site/6.png" />
 	</div>
 	<table class="preview">
 		<tr>
@@ -57,17 +57,17 @@
 </div>
 <div class="parsisiuntimai">
 	<h2>PARSISIUNTIMAI</h2>
-		<div class="versija darkBackground">
-			<h3>v1.3</h3>
-			<div class="aprasymas">
-					Atskirti tamsaus ir šviesaus stiliaus widget'ai<br>
-					Permatomas widget'o fonas<br>
-					Klaidų taisymai...<br>
-			</div>
-			<a href="https://github.com/DrFlarre/tvarkarastis/releases/download/v1.3/gvg-tvarkarastis-v1.3.apk"><b>Siųstis (.apk)</b></a>,
-			<a href="https://github.com/DrFlarre/tvarkarastis/archive/v1.3.zip">programos kodas (.zip)</a>
+	<div class="versija darkBackground">
+		<h3>v1.3</h3>
+		<div class="aprasymas">
+				Atskirti tamsaus ir šviesaus stiliaus widget'ai<br>
+				Permatomas widget'o fonas<br>
+				Klaidų taisymai...<br>
 		</div>
-		<h4 onclick="toggleOlder()" id="toggleOlder" class="darkBackground">SENESNI ⮟</h4>
+		<a href="https://github.com/DrFlarre/tvarkarastis/releases/download/v1.3/gvg-tvarkarastis-v1.3.apk"><b>Siųstis</b></a>,
+		<a href="https://github.com/DrFlarre/tvarkarastis/archive/v1.3.zip">programos kodas</a>
+	</div>
+	<h4 onclick="toggleOlder()" id="toggleOlder" class="darkBackground">SENESNI ⯆</h4>
 		<div id="senesni">
 			<div class="versija darkBackground">
 				<h3>v1.2</h3>
@@ -189,7 +189,6 @@
 	function toggleOlder() {
 		var x = document.getElementById("senesni");
 		var y = document.getElementById("toggleOlder");
-
 		if(x.style.display === "none" || x.style.display === "") {
 			x.style.display = "block";
 			y.style.background = "none";

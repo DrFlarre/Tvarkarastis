@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?backgroundColor"
     tools:context=".SelectSettingsActivity"
-    tools:layout_editor_absoluteY="25dp"
-    android:background="?backgroundColor">
+    tools:layout_editor_absoluteY="25dp">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -18,11 +18,11 @@
 
         <ImageView
             android:id="@+id/pasirinktiMokini"
-            android:contentDescription="@string/pasirinkti_content_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
+            android:contentDescription="@string/pasirinkti_content_description"
             android:focusable="true"
             android:minHeight="40dp"
             android:onClick="pasirinkti"
@@ -33,11 +33,11 @@
 
         <ImageView
             android:id="@+id/alarmSettings"
-            android:contentDescription="@string/pranesimai_content_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:clickable="true"
+            android:contentDescription="@string/pranesimai_content_description"
             android:focusable="true"
             android:minHeight="40dp"
             android:onClick="priminimai"
@@ -47,21 +47,23 @@
 
         <ImageView
             android:id="@+id/apie"
-            android:contentDescription="@string/apie_content_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="?selectedItemColor"
             android:clickable="true"
+            android:contentDescription="@string/apie_content_description"
             android:focusable="true"
             android:minHeight="40dp"
             android:onClick="apie"
             app:layout_constraintBottom_toBottomOf="parent"
             app:srcCompat="@drawable/apie"
             tools:layout_editor_absoluteX="0dp" />
+
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="visible"
@@ -70,33 +72,33 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:id="@+id/apie_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:visibility="visible">
 
                 <TextView
                     android:id="@+id/changeTheme"
-                    android:textSize="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:background="?grayBackgroundColor"
-                    android:textColor="?blackText"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="changeTheme"
                     android:padding="6dp"
                     android:text="@string/keisti_spalvas"
                     android:textAlignment="center"
-                    android:textStyle="bold"
-                    android:focusable="true"
-                    android:clickable="true"
-                    android:onClick="changeTheme"/>
+                    android:textColor="?blackText"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView7"
@@ -105,20 +107,20 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:background="?grayBackgroundColor"
-                    android:textColor="?grayText"
                     android:padding="6dp"
                     android:text="@string/naudojimasis"
                     android:textAlignment="center"
+                    android:textColor="?grayText"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/textView8"
-                    android:textColor="?grayText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="6dp"
                     android:layout_marginRight="6dp"
-                    android:text="@string/naudojimasis_contents" />
+                    android:text="@string/naudojimasis_contents"
+                    android:textColor="?grayText" />
 
                 <TextView
                     android:id="@+id/textView"
@@ -127,144 +129,21 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:background="?grayBackgroundColor"
-                    android:textColor="?grayText"
                     android:padding="6dp"
                     android:text="@string/copyright"
                     android:textAlignment="center"
+                    android:textColor="?grayText"
                     android:textSize="12sp"
-                    android:textStyle="italic"
-                    tools:layout_editor_absoluteY="144dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/vardai_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:background="?grayBackgroundColor"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="parseNames"
-                    android:padding="8dp"
-                    android:text="@string/mygtukas_atnaujinti"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="?blackText"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/inputName"
-                    android:backgroundTint="?blackText"
-                    android:textColor="?blackText"
-                    android:textColorHint="?grayText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="10dp"
-                    android:ems="10"
-                    android:hint="@string/atnaujinkite_sarasa"
-                    android:inputType="textPersonName"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loadNamesButton" />
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/nameList"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/inputName">
-
-                </android.support.v7.widget.RecyclerView>
-
-                <LinearLayout
-                    android:id="@+id/rodomiMokiniai_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:background="?grayBackgroundColor"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:onClick="pakeistiRodomusMokinius"
-                    android:orientation="horizontal"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/rodomiMokiniaiText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/rodomi_mokiniai"
-                        android:textAlignment="viewEnd"
-                        android:textColor="?blackText"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/rodomiMokiniai"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text=""
-                        android:textColor="?blackText"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="?grayBackgroundColor"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/pazymetiText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginStart="0dp"
-                        android:text="@string/pazymeti_vardai"
-                        android:textAlignment="center"
-                        android:textColor="?grayText"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/nameList" />
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/pazymetiVardai"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_constraintBottom_toTopOf="@+id/mainMenuButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/pazymetiText" />
-                </LinearLayout>
+                    android:textStyle="italic" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/priminimai_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone"
-                app:layout_constraintTop_toTopOf="parent">
+                android:visibility="gone">
 
                 <LinearLayout
                     android:id="@+id/priminimai_group"
@@ -312,7 +191,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textAlignment="center"
-                        android:textColor="?grayText"/>
+                        android:textColor="?grayText" />
 
                 </LinearLayout>
 
@@ -371,7 +250,7 @@
                             android:text="@string/pasikeis_grizus"
                             android:textAlignment="center"
                             android:textColor="?redText"
-                            android:visibility="gone"/>
+                            android:visibility="gone" />
 
                     </LinearLayout>
 
@@ -456,8 +335,8 @@
                             android:id="@+id/panaikinimo_info"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="?grayText"
-                            android:textAlignment="center" />
+                            android:textAlignment="center"
+                            android:textColor="?grayText" />
 
                     </LinearLayout>
 
@@ -521,8 +400,8 @@
                         android:id="@+id/trimInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="?grayText"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textColor="?grayText" />
 
                     <TextView
                         android:id="@+id/trimWarning"
@@ -532,7 +411,7 @@
                         android:textAlignment="center"
                         android:textColor="?redText"
                         android:textStyle="italic"
-                        android:visibility="gone"/>
+                        android:visibility="gone" />
 
                 </LinearLayout>
 
@@ -623,21 +502,104 @@
         </LinearLayout>
     </ScrollView>
 
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/vardai_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2"
+        tools:layout_editor_absoluteX="288dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="?grayBackgroundColor"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="parseNames"
+            android:padding="8dp"
+            android:text="@string/mygtukas_atnaujinti"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="?blackText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_conversion_absoluteHeight="41dp"
+            tools:layout_conversion_absoluteWidth="384dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/nameList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputName"
+            tools:layout_conversion_absoluteHeight="200dp"
+            tools:layout_conversion_absoluteWidth="384dp"></android.support.v7.widget.RecyclerView>
+
+        <EditText
+            android:id="@+id/inputName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="?blackText"
+            android:ems="10"
+            android:hint="@string/atnaujinkite_sarasa"
+            android:inputType="textPersonName"
+            android:textColor="?blackText"
+            android:textColorHint="?grayText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:layout_conversion_absoluteHeight="46dp"
+            tools:layout_conversion_absoluteWidth="368dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/palaikykite_paspaude"
+            android:textAlignment="center"
+            android:textColor="?grayText"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?defaultItemColor"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="returnToMenu"
+        android:padding="8dp"
         android:text="@string/main_menu"
         android:textAlignment="center"
         android:textColor="?blackText"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="returnToMenu"
-        android:padding="8dp"
-        android:background="?defaultItemColor"/>
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

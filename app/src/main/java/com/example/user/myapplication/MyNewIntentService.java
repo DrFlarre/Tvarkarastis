@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.Toast;
@@ -77,8 +76,7 @@ public class MyNewIntentService extends IntentService{
     void downloadString() {
         SharedPreferences mPrefs = getSharedPreferences("label", 0);
         prev_string = mPrefs.getString("pamokos", "NULL");
-        Funkcijos.getString(getApplicationContext(), mPrefs.getString("link", "NULL"), mPrefs, "pamokos");
-
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(message, new IntentFilter("lesson_download_finished"));
+        Funkcijos.gautiInformacija(getApplicationContext(), mPrefs, "pamokos");
     }
 }

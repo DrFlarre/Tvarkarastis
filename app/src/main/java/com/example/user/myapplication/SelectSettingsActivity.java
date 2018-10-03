@@ -1,19 +1,14 @@
 package com.example.user.myapplication;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.os.Build;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -22,25 +17,21 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SelectSettingsActivity extends AppCompatActivity {
 
-    LinearLayout priminimai_main, vardai_main, apie_main;
+    LinearLayout priminimai_main, apie_main;
+    ConstraintLayout vardai_main;
     ImageView vardai_button, priminimai_button, apie_button;
     SharedPreferences mPrefs;
     boolean priminimai, vibracija, panaikinimai;
@@ -48,10 +39,8 @@ public class SelectSettingsActivity extends AppCompatActivity {
 
     public List<Mokinys> mokiniai = new ArrayList<>();
     public List<Mokinys> rodomiMokiniai = new ArrayList<>();
-    public List<Mokinys> pazymetiMokiniai = new ArrayList<>();
 
     MokiniaiAdapter mAdapter;
-    MokiniaiAdapter pazAdapter;
 
     String string;
     EditText inputName;
@@ -92,7 +81,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
             mokiniai.clear();
             rodomiMokiniai.clear();
             mokiniai = Funkcijos.getList(mPrefs, "mokiniuSarasas");
-            rodomiMokiniai = Funkcijos.getList(mPrefs, "mokiniuSarasas");
+            rodomiMokiniai = new ArrayList<>(mokiniai);
         }
     }
 
@@ -115,7 +104,6 @@ public class SelectSettingsActivity extends AppCompatActivity {
         inputName.addTextChangedListener(filterTextWatcher);
 
         switched = mPrefs.getBoolean("switched", false);
-        setMokiniaiTextProperties();
 
         nustatytiSarasa();
         String tempVardai = mPrefs.getString("nameString", "NULL");
@@ -125,7 +113,6 @@ public class SelectSettingsActivity extends AppCompatActivity {
         } else if(!tempVardai.equals("NULL"))
             analyzeNames(tempVardai);
 
-        nustatytiPazymetuSarasa();
         mAdapter.notifyDataSetChanged();
 
         resetColors(view);
@@ -169,6 +156,13 @@ public class SelectSettingsActivity extends AppCompatActivity {
 
         ll.setVisibility(View.VISIBLE);
     }
+    void resetSelection(ConstraintLayout ll) {
+        apie_main.setVisibility(View.GONE);
+        vardai_main.setVisibility(View.GONE);
+        priminimai_main.setVisibility(View.GONE);
+
+        ll.setVisibility(View.VISIBLE);
+    }
 
     /**Funkcija, tamsesne spalva pažyminti nurodytą nustatymų dalį*/
     void resetColors(View view) {
@@ -198,7 +192,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
     }
 
     void exitActivity() {
-        Funkcijos.setList(mPrefs, "pazymeti", pazymetiMokiniai);
+        issaugotiMokinius(mokiniai);
         mPrefs.edit().putBoolean("switched", switched).apply();
 
         Intent returnIntent = new Intent();
@@ -387,46 +381,6 @@ public class SelectSettingsActivity extends AppCompatActivity {
 
 
     /*--------------------------------Sukurti mokinių sąrašus --------------------------------*/
-    /**Funkcija nustatyti pažymėų mokinių sąrašą*/
-    void nustatytiPazymetuSarasa() {
-        RecyclerView recyclerView;
-
-        recyclerView = findViewById(R.id.pazymetiVardai);
-        pazAdapter = new MokiniaiAdapter(pazymetiMokiniai);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(pazAdapter);
-
-        //Uzkrauname pazymetu mokiniu sarasa is atminties (SharedPreferences)
-        pazymetiMokiniai.clear();
-        pazymetiMokiniai.addAll(Funkcijos.getList(mPrefs, "pazymeti"));
-        if(pazymetiMokiniai.size() == 0) {
-            Mokinys mok = new Mokinys(getString(R.string.palaikykite_paspaude), "sample");
-            pazymetiMokiniai.add(mok);
-        }
-        pazAdapter.notifyDataSetChanged();
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), LinearLayoutManager.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
-
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                keite_nustatymus = true;
-                nustatytiLink(position, true);
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-                if(pazymetiMokiniai.size() > position && position >= 0) {
-                    pazymetiMokiniai.remove(position);
-                    pazAdapter.notifyDataSetChanged();
-                }
-            }
-        }));
-    }
 
     /**funkcija sukurti vardu sarasui, jo nustatymams ir elemento (vardo) paspaudimui**/
     void nustatytiSarasa() {
@@ -439,7 +393,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
-        Mokinys mok = new Mokinys(getString(R.string.press_load_names), "sample");
+        final Mokinys mok = new Mokinys(getString(R.string.press_load_names), "sample");
         rodomiMokiniai.add(mok);
 
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), LinearLayoutManager.VERTICAL);
@@ -448,47 +402,38 @@ public class SelectSettingsActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                nustatytiLink(position, false);
+                nustatytiLink(position);
             }
 
             @Override
             public void onItemLongClick(View view, int position) {
-                if(pazymetiMokiniai.size() == 1 && pazymetiMokiniai.get(0).getNuoroda().equals("sample"))
-                    pazymetiMokiniai.clear();
-                pazymetiMokiniai.add(rodomiMokiniai.get(position));
-                pazAdapter.notifyDataSetChanged();
-                Toast.makeText(getApplicationContext(), getString(R.string.pazymetas_mokinys) + rodomiMokiniai.get(position).getVardas(), Toast.LENGTH_SHORT).show();
+                if(mokiniai.get(position).getPazymetas()) {
+                    String vardas = rodomiMokiniai.get(position).getVardas();
+                    for(int i = 0; i < mokiniai.size(); i++)
+                        if(mokiniai.get(i).getVardas().equals(vardas) && mokiniai.get(i).getPazymetas())
+                            mokiniai.remove(i);
+                    Toast.makeText(getApplicationContext(), getString(R.string.atzymetas_mokinys) + rodomiMokiniai.get(position).getVardas(), Toast.LENGTH_SHORT).show();
+                } else {
+                    mokiniai.add(0, new Mokinys(rodomiMokiniai.get(position)));
+                    mokiniai.get(0).setPazymetas(true);
+                    Toast.makeText(getApplicationContext(), getString(R.string.pazymetas_mokinys) + rodomiMokiniai.get(position).getVardas(), Toast.LENGTH_SHORT).show();
+                }
+                atnaujintiRodomusMokinius(inputName.getText().toString());
             }
         }));
     }
     /*----------------------------------------------------------------------------------------*/
 
-
-
-
-    /*--------------------------Pakeisti I-II/III/IV klasių pasirinkimą------------------------*/
-    /**Funkcija, pakeičianti pasirinkimą tarp I-II ir III-IV klasių*/
-    public void pakeistiRodomusMokinius(View view) {
-        switched = mPrefs.getBoolean("switched", false);
-        switched = !switched;
-
-        mPrefs.edit().putBoolean("switched", switched).apply();
-        String nameString = mPrefs.getString("nameString", "NULL");
-        if(nameString.equals("NULL"))
-            Toast.makeText(getApplicationContext(), R.string.atnaujinkite_sarasa, Toast.LENGTH_LONG).show();
+    void atnaujintiRodomusMokinius(String s) {
+        rodomiMokiniai.clear();
+        if(s.equals(""))
+            rodomiMokiniai.addAll(mokiniai);
         else
-            analyzeNames(mPrefs.getString("nameString", "NULL"));
-        setMokiniaiTextProperties();
+            for(Mokinys m : mokiniai)
+                if(m.getVardas().toLowerCase().contains(s.toLowerCase()))
+                    rodomiMokiniai.add(m);
+        mAdapter.notifyDataSetChanged();
     }
-
-    /**Funkcija, pritaikanti pasirinkimo tekstą padarytam klasių pasirinkimui*/
-    void setMokiniaiTextProperties() {
-        TextView rodomiMokiniai = findViewById(R.id.rodomiMokiniai);
-        rodomiMokiniai.setText(mPrefs.getBoolean("switched", false) ? R.string.III_IV : R.string.I_II);
-    }
-    /*----------------------------------------------------------------------------------------*/
-
-
 
 
     /*----------------------- Veiksmai su rodomais mokiniais-----------------------------------*/
@@ -497,11 +442,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            rodomiMokiniai.clear();
-            for(Mokinys m : mokiniai)
-                if(m.getVardas().toLowerCase().contains(charSequence.toString().toLowerCase()))
-                    rodomiMokiniai.add(m);
-            mAdapter.notifyDataSetChanged();
+            atnaujintiRodomusMokinius(charSequence.toString());
         }
 
         @Override
@@ -511,16 +452,9 @@ public class SelectSettingsActivity extends AppCompatActivity {
     };
 
     /**funkcija pakeisti tvarkarascio nuorodai i pasirinkta is saraso**/
-    void nustatytiLink(int position, boolean isPazymetu) {
-        String link;
-        String vardas;
-        if(isPazymetu) {
-            link = pazymetiMokiniai.get(position).getNuoroda();
-            vardas = pazymetiMokiniai.get(position).getVardas();
-        } else {
-            link = rodomiMokiniai.get(position).getNuoroda();
-            vardas = rodomiMokiniai.get(position).getVardas();
-        }
+    void nustatytiLink(int position) {
+        String link = rodomiMokiniai.get(position).getNuoroda();
+        String vardas = rodomiMokiniai.get(position).getVardas();
 
         if(!link.equals("sample")) {
             keite_nustatymus = true;
@@ -528,7 +462,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
             mPrefs.edit().putString("pamokuLink", link).apply();
             mPrefs.edit().putString("pamokosAtnaujintos", Funkcijos.getLaikas()).apply();
 
-            Funkcijos.getString(getApplicationContext(), mPrefs.getString("link", "NULL"), mPrefs, "pamokos"); //is anksto uzkrauname tvarkarasti
+            Funkcijos.gautiInformacija(getApplicationContext(), mPrefs, "pamokos"); //is anksto uzkrauname tvarkarasti
             Toast.makeText(getApplicationContext(), getString(R.string.set_link_for) + vardas, Toast.LENGTH_LONG).show();
             Funkcijos.atsauktiPriminimus(getApplicationContext(), mPrefs);
         }
@@ -594,7 +528,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
 
     /**funkcija atnaujinti vardu sarasui**/
     void updateNameString() {
-        Funkcijos.getString(getApplicationContext(), getString(R.string.main_link), mPrefs, "nameString");
+        Funkcijos.gautiInformacija(getApplicationContext(), mPrefs, "nameString");
 
         BroadcastReceiver message = new BroadcastReceiver() {
             @Override
@@ -619,13 +553,9 @@ public class SelectSettingsActivity extends AppCompatActivity {
             String nameInString = "", linkInString = "";
             if(moksleiviai && a.contains("<a h")) {
                 nameInString = Funkcijos.findNameInString(a, false); //pazymime, kad sakinyje nurodoma mokinio name bei pavarde
-                linkInString = Funkcijos.findLinkInString(a);
-            } if(switched && a.contains("Moksleiviai"))
-                moksleiviai = true; //pazymimie, kad prasidejo "Moksleiviai" lenteles skiltis
-            else if(!switched && a.contains("Klasės"))
+                linkInString = Funkcijos.findLinkInString(getApplicationContext(), a);
+            } else if(a.contains("Klasės"))
                 moksleiviai = true;
-            else if(!switched && a.contains("Mokytojai"))
-                moksleiviai = false;
 
             if(!nameInString.equals("")) {
                 Mokinys mok = new Mokinys(nameInString, linkInString);
@@ -634,8 +564,10 @@ public class SelectSettingsActivity extends AppCompatActivity {
             }
         }
 
-        mokiniai.remove(mokiniai.size()-1); //pasaliname paskutini - "mimosasoftware.com" elementa
-        rodomiMokiniai.remove(rodomiMokiniai.size()-1);
+        if(mokiniai.size() > 0) {
+            mokiniai.remove(mokiniai.size() - 1); //pasaliname paskutini - "mimosasoftware.com" elementa
+            rodomiMokiniai.remove(rodomiMokiniai.size() - 1);
+        }
         mAdapter.notifyDataSetChanged();
 
         issaugotiMokinius(mokiniai);

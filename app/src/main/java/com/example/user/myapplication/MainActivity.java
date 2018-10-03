@@ -1,7 +1,6 @@
 package com.example.user.myapplication;
 
 import android.app.Dialog;
-import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -250,10 +249,16 @@ public class MainActivity extends AppCompatActivity {
 
     /**Funkcija atnaujinti pamoku sarasui*/
     void updatePamokuString() {
-        Funkcijos.getString(getApplicationContext(), mPrefs.getString("link", "NULL"), mPrefs, "pamokos");
-        mPrefs.edit().putString("pamokuLink", mPrefs.getString("link", "NULL")).apply(); //nuoroda, is kurios siunteme
-        mPrefs.edit().putString("pamokosAtnaujintos", Funkcijos.getLaikas()).apply(); //laikas, kada siunteme pamokas
-        paruostiSarasa();
+        Funkcijos.gautiInformacija(this, mPrefs, "pamokos");
+        BroadcastReceiver message = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                mPrefs.edit().putString("pamokuLink", mPrefs.getString("link", "NULL")).apply(); //nuoroda, is kurios siunteme
+                mPrefs.edit().putString("pamokosAtnaujintos", Funkcijos.getLaikas()).apply(); //laikas, kada siunteme pamokas
+                paruostiSarasa();
+            }
+        };
+        LocalBroadcastManager.getInstance(this).registerReceiver(message, new IntentFilter("lesson_download_finished"));
     }
 
     /**Funkcija sukurti ir paleisti ReloadLessons AsyncTask subklasę*/

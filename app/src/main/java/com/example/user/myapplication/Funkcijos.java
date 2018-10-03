@@ -1,7 +1,6 @@
 package com.example.user.myapplication;
 
 import android.app.AlarmManager;
-import android.app.Dialog;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -11,17 +10,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.icu.util.LocaleData;
-import android.os.AsyncTask;
-import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.view.View;
-import android.view.Window;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -132,7 +124,7 @@ public class Funkcijos {
                 textBounds[1] = a.length(); //jeigu radome tik gaires pradzia, bet ne pabaiga, uzbaigiame gaire sakinio pabaigoje
             if(textBounds[0] != -1)
                 tempStr = a.substring(textBounds[0], textBounds[1]); //is tempStr sakinio isskiriame skaitomaji teksta
-            priskirtiInfo(mPrefs, tvarkarastis, tempStr, busena, padetis);
+            priskirtiInfo(mPrefs, context, tvarkarastis, tempStr, busena, padetis);
         }
 
         tvarkarastis.intLaikoSuma = Funkcijos.getPamokuLaikas(tvarkarastis, tvarkarastis.intLaikas);
@@ -160,13 +152,17 @@ public class Funkcijos {
     }
 
     /**Funkcija gauta tempStr sakini irasyti i atitinkama kintamaji tvarkarascio apraše*/
-    private static void priskirtiInfo(SharedPreferences mPrefs, Tvarkarastis tvarkarastis, String tempStr, int busena, int padetis) {
+    private static void priskirtiInfo(SharedPreferences mPrefs, Context context, Tvarkarastis tvarkarastis, String tempStr, int busena, int padetis) {
         int stulpelis = padetis % 6 -1;
         int eilute = padetis / 6 -2;
 
         if(tempStr.length() > 0 && tempStr.charAt(0) != '&' && busena >= 0 && busena < 2) { //if string contains valuable text
             if(busena == 0) {//pavadinimo tekstas
-                tempStr = tempStr.substring(0, 32) + "\n" + tempStr.substring(33);
+                try {
+                    tempStr = tempStr.substring(0, 32) + "\n" + tempStr.substring(33);
+                } catch(Exception e) {
+                    Log.d("myDebug", "ERROR");
+                }
                 tvarkarastis.pavadinimas = tempStr;
             } else {
                 if(eilute == -2) //klases tekstas
@@ -180,11 +176,20 @@ public class Funkcijos {
                         tvarkarastis.pamokos[stulpelis][eilute].setNumeris(eilute+1);
 
                         if(mPrefs.getBoolean("nukirpimas", false)) {
-                            int idx = tempStr.indexOf(' ') + 1;
-                            if(idx >= 0 && idx < tempStr.length())
-                                tvarkarastis.pamokos[stulpelis][eilute].setPavadinimas(tempStr.substring(idx));
-                            else
-                                tvarkarastis.pamokos[stulpelis][eilute].setPavadinimas(tempStr);
+                            String [] words = tempStr.split(" ");
+                            words[0] = "";
+                            for(int idx = 0; idx < words.length; idx++) {
+                                if(words[idx].toLowerCase().equals("srautas".toLowerCase())) {
+                                    words[idx] = "";
+                                    words[idx -1] = "";
+                                } else if(words[idx].equals("A") || words[idx].equals("B"))
+                                    words[idx] = "";
+                            }
+                            String final_string = "";
+                            for(int idx = 0; idx < words.length; idx++)
+                                if(!words[idx].equals(""))
+                                    final_string += (idx != 0 && final_string.length() != 0 ? " " : "") + words[idx];
+                            tvarkarastis.pamokos[stulpelis][eilute].setPavadinimas(final_string);
                         } else
                             tvarkarastis.pamokos[stulpelis][eilute].setPavadinimas(tempStr);
                     } else {
@@ -217,7 +222,7 @@ public class Funkcijos {
         else return "";
     }
 
-    public static String findLinkInString(String a) {
+    public static String findLinkInString(Context context, String a) {
         int propertyStart = -1, propertyEnd = -1;
 
         while(a.indexOf('"') != -1) {
@@ -227,8 +232,15 @@ public class Funkcijos {
             a = a.replaceFirst("\"", "");
         }
 
-        if(propertyStart != -1 && propertyEnd != -1)
-            return "http://www.vaivorykstesgimnazija.lt/tvarkarastis/" + a.substring(propertyStart, propertyEnd);
+        if(propertyStart != -1 && propertyEnd != -1) {
+            String link = context.getSharedPreferences("label", 0).getString("main_link", "NULL");
+            if(!link.equals("NULL")) {
+                if (link.charAt(link.length() - 1) != '/')
+                    link += "/";
+                return link + a.substring(propertyStart, propertyEnd);
+            }
+            else return "";
+        }
         else return "";
     }
     /*-------------------------------------------------------------------------------------------------------*/
@@ -245,7 +257,11 @@ public class Funkcijos {
         else {
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<Mokinys>>(){}.getType();
-            return gson.fromJson(json, listType);
+            try {
+                return gson.fromJson(json, listType);
+            } catch(Exception e) {
+                return new ArrayList<>();
+            }
         }
     }
 
@@ -279,7 +295,12 @@ public class Funkcijos {
         } else {
             Gson gson = new Gson();
             Type tvarkarascioType = new TypeToken<Tvarkarastis>(){}.getType();
-            tvarkarastis = gson.fromJson(json, tvarkarascioType);
+            try {
+                tvarkarastis = gson.fromJson(json, tvarkarascioType);
+            } catch (Exception e) {
+                Log.d("myDebug", "KLAIDA kraunant tvarkaraštį iš atminties");
+                tvarkarastis = new Tvarkarastis("NULL");
+            }
         }
         return tvarkarastis;
     }
@@ -296,29 +317,55 @@ public class Funkcijos {
                     @Override
                     public void onCompleted(Exception e, byte[] result) {
                         try {
-                            String res = new String(result, "Windows-1257");
+                            String res;
+                            if(target.equals("main_link"))
+                                res = new String(result, "UTF-8");
+                            else res = new String(result, "Windows-1257");
                             mPrefs.edit().putString(target, res).apply();
-                            if(target.equals("nameString")) {
-                                Intent intent = new Intent("name_download_finished");
-                                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+                            Intent intent = null;
+                            switch(target) {
+                                case "nameString": intent = new Intent("name_download_finished"); break;
+                                case "pamokos": intent = new Intent("lesson_download_finished"); break;
+                                case "web-version": intent = new Intent("version_check_finished"); break;
+                                case "main_link": updateMainLink(context, mPrefs, res); break;
                             }
-                            if(target.equals("pamokos")) {
-                                Intent intent = new Intent("lesson_download_finished");
+                            if(intent != null)
                                 LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-                            }
-                            if(target.equals("web-version")) {
-                                Intent intent = new Intent("version_check_finished");
-                                LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
-                            }
                         } catch (Exception ex) {
                             Toast.makeText(context, R.string.nepavyko_atsisiusti, Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
+
+    public static void gautiInformacija(Context context, final SharedPreferences mPrefs, final String target) {
+        getString(context, context.getString(R.string.main_link), mPrefs, "main_link");
+        BroadcastReceiver message = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if(target.equals("pamokos"))
+                    getString(context, mPrefs.getString("link", "NULL"), mPrefs, target);
+                else if(target.equals("nameString"))
+                    getString(context, mPrefs.getString("main_link", "NULL"), mPrefs, target);
+                else
+                    Toast.makeText(context, R.string.klaida_main_link2, Toast.LENGTH_SHORT).show();
+            }
+        };
+        LocalBroadcastManager.getInstance(context).registerReceiver(message, new IntentFilter("link_download_finished"));
+    }
     /*----------------------------------------------------------------------------------------*/
 
-
+    static private void updateMainLink(Context context, SharedPreferences mPrefs, String res) {
+        int idx = res.indexOf(">Tvarkaraštis<") -1;
+        if(idx != -1) {
+            while(!res.substring(idx, idx +4).equals("href"))
+                idx--;
+            String link = res.substring(idx+6, res.indexOf('"', idx+6));
+            mPrefs.edit().putString("main_link", link).apply();
+            Intent intent = new Intent("link_download_finished");
+            LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+        } else Toast.makeText(context, R.string.klaida_main_link1, Toast.LENGTH_SHORT).show();
+    }
 
 
     /*----------------------------- Priminimų funkcijos -----------------------------------------*/

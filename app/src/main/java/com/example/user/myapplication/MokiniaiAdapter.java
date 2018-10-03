@@ -1,13 +1,12 @@
 package com.example.user.myapplication;
 
-import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MokiniaiAdapter extends RecyclerView.Adapter<MokiniaiAdapter.MyViewHolder> {
@@ -16,10 +15,12 @@ public class MokiniaiAdapter extends RecyclerView.Adapter<MokiniaiAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
         public TextView title;
+        public RelativeLayout main_layout;
 
         public MyViewHolder(View view) {
             super(view);
             title = (TextView) view.findViewById(R.id.vardas);
+            main_layout = view.findViewById(R.id.mokinys_main_layout);
         }
     }
 
@@ -37,7 +38,7 @@ public class MokiniaiAdapter extends RecyclerView.Adapter<MokiniaiAdapter.MyView
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         Mokinys mokinys = mokiniaiList.get(position);
-        holder.title.setText(mokinys.getVardas());
+        holder.title.setText(mokinys.getPazymetas() ? "★" + mokinys.getVardas() : mokinys.getVardas());
 
         /*holder.title.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

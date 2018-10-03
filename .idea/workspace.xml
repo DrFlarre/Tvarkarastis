@@ -24,7 +24,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1dcd6fb-763b-40d3-a2a9-f91657ea3c46" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/site/1.png" afterPath="$PROJECT_DIR$/site/1.png" />
+      <change beforePath="$PROJECT_DIR$/site/2.png" afterPath="$PROJECT_DIR$/site/2.png" />
+      <change beforePath="$PROJECT_DIR$/site/4.png" afterPath="$PROJECT_DIR$/site/4.png" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />

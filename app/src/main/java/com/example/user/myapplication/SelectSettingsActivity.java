@@ -124,6 +124,7 @@ public class SelectSettingsActivity extends AppCompatActivity {
         uzkrautiNustatymus();
         resetColors(view);
         resetSelection(priminimai_main);
+        setPriminimaiTextProperties(priminimai);
     }
 
     void uzkrautiNustatymus() {
@@ -407,6 +408,8 @@ public class SelectSettingsActivity extends AppCompatActivity {
 
             @Override
             public void onItemLongClick(View view, int position) {
+                if(position < 0 || position > mokiniai.size())
+                    return;
                 if(mokiniai.get(position).getPazymetas()) {
                     String vardas = rodomiMokiniai.get(position).getVardas();
                     for(int i = 0; i < mokiniai.size(); i++)

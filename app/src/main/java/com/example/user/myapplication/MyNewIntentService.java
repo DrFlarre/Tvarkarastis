@@ -68,7 +68,7 @@ public class MyNewIntentService extends IntentService{
             String curr_string = mPrefs.getString("pamokos", "NULL");
             if(!curr_string.equals(prev_string))
                 Funkcijos.displayNotification(context, "Tvarkaraštis", "Pasikeitė pamokų tvarkaraštis",
-                        mPrefs.getBoolean("vibracija", true), false);
+                        mPrefs.getBoolean("vibracija", true), true);
             LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(message);
         }
     };

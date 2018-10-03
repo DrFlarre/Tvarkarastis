@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
                     version = version.substring(version.indexOf('v'), version.indexOf('/'));
                 else
                     Log.d("myDebug","problem with version codes, wait and reload or contact the developer");
-                Log.d("myDebug", version);
                 if(!version.equals(BuildConfig.VERSION_NAME) && mPrefs.getBoolean("versionUpdate", true)) {
                     displayUpdateDialog();
                 }

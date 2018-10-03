@@ -57,7 +57,7 @@
         -> Įrašykite į išimtis veikimą reguliuojančioje programoje\n
         <i>* Vieno sprendimo visiems telefonų modeliams nėra, ieškokite informacijos savo modeliui internete</i>
     </string>
-    <string name="copyright">© Eidenis Kasperavičius 2018</string>
+    <string name="copyright">Eidenis Kasperavičius 2018</string>
 
     <!-- MOKINIO PASIRINKIMO NUSTATYMAI -->
     <string name="mygtukas_atnaujinti">ATNAUJINTI SĄRAŠĄ</string>

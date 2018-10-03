@@ -25,11 +25,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e1dcd6fb-763b-40d3-a2a9-f91657ea3c46" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/MainActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/MyNewIntentService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/MyNewIntentService.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/SelectSettingsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/SelectSettingsActivity.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_settings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_select_settings.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,7 +67,7 @@
       <file leaf-file-name="SelectSettingsActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/SelectSettingsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
+            <state relative-caret-position="443">
               <caret line="411" column="27" lean-forward="false" selection-start-line="411" selection-start-column="27" selection-end-line="411" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -2697,7 +2692,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538586466167</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="bug fixes&#10;enabled download">
+      <created>1538591996677</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1538591996677</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2753,7 +2755,8 @@
     <MESSAGE value="added second widget&#10;transparent widget background&#10;update list on download finish" />
     <MESSAGE value="added .gitignore" />
     <MESSAGE value="įdėtas automatinis tvarkaraščio nuorodos gavimas&#10;pakeista &quot;išsaugotų mokinių&quot; sistema&#10;pridėti mokytojai ir kabinetai&#10;nebereikia perjungti tarp I-II ir III-IV klasių" />
-    <option name="LAST_COMMIT_MESSAGE" value="įdėtas automatinis tvarkaraščio nuorodos gavimas&#10;pakeista &quot;išsaugotų mokinių&quot; sistema&#10;pridėti mokytojai ir kabinetai&#10;nebereikia perjungti tarp I-II ir III-IV klasių" />
+    <MESSAGE value="bug fixes&#10;enabled download" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug fixes&#10;enabled download" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3176,7 +3179,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/user/myapplication/SelectSettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
+        <state relative-caret-position="443">
           <caret line="411" column="27" lean-forward="false" selection-start-line="411" selection-start-column="27" selection-end-line="411" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />

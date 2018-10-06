@@ -1,4 +1,2 @@
-# GVG Tvarkaraštis
-Android aplikacija, kurta pagal "Tvarkaraštis" Play Store programos principą, tačiau pritaikyta būtent šiai mokyklai: iš internetinio puslapio automatiškai siunčia ir tvarkingiau, nei puslapyje, atvaizduoja.
-
-#### Daugiau info - puslapyje <https://drflarre.github.io/tvarkarastis>
+# Ši paskyra naudojama tik senoms programos versijoms (iki v1.4 imtinai) saugoti. Nauja versija - <https://github.com/EidenisK/tvarkarastis>
+#### Daugiau info - puslapyje <https://eidenisk.github.io/tvarkarastis>
